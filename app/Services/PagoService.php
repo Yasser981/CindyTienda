@@ -37,11 +37,11 @@ class PagoService
                     return $data->articulo;
                 })
                 ->addColumn('abona', function ($data){
-                    $divisa = $data->opcion_divisa === 0 ? 'C$':'$';
+                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'CS ';
                     return $divisa.' '.$data->abona;
                 })
                 ->addColumn('saldo', function ($data){
-                    $divisa = $data->opcion_divisa === 0 ? 'C$':'$';
+                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'CS ';
                     return $divisa.' '.$data->saldo;
                 })
                 ->addColumn('fecha',function ($data){
@@ -83,7 +83,7 @@ class PagoService
 
     public function impresion($save)
     {
-            $divisa = $save->opcion_divisa === 0 ? 'CS':'US$';
+            $divisa = $save->opcion_divisa === 0 ? 'US$ ':'CS ';
             
             $nombreImpresora = "ImpresoraTermica";
             $connector = new WindowsPrintConnector($nombreImpresora);

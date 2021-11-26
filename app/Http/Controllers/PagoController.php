@@ -58,7 +58,7 @@ class PagoController extends Controller
      */
     public function show(Pago $pago)
     {
-        $divisa = $pago->opcion_divisa === 1?'CS ':'US$ ';
+        $divisa = $pago->opcion_divisa === 1?'US$ ':'CS ';
         $html = view('pagos.modal-field', compact('pago','divisa'))->render();
         return response()->json(['html'=>$html]);
     }
@@ -71,7 +71,7 @@ class PagoController extends Controller
      */
     public function edit(Pago $pago)
     {
-        $divisa = $pago->opcion_divisa === 1?'CS ':'US$ ';
+        $divisa = $pago->opcion_divisa === 1?'US$ ':'CS ';
         $html = view('pagos.modal-pago-file', compact('pago','divisa'))->render();
         return response()->json(['html'=>$html]);
     }
