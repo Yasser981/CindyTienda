@@ -83,7 +83,7 @@ class PagoService
 
     public function impresion($save)
     {
-            $divisa = $save->opcion_divisa === 0 ? 'US$ ':'CS ';
+            $divisa = $save->opcion_divisa === 1 ? 'US$ ':'CS ';
             
             $nombreImpresora = "ImpresoraTermica";
             $connector = new WindowsPrintConnector($nombreImpresora);
