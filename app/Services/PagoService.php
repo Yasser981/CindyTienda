@@ -107,7 +107,7 @@ class PagoService
             $impresora->text("Abono ".$divisa.$save->abona."\n \n"."Saldo ".$divisa.$save->saldo."\n");
             $impresora->text("\n \n");
             $impresora->text("_______________________________"."\n");
-            $impresora->text("Firma Cliente\n");
+            $impresora->text("Firma \n");
             $impresora->text("\n \n");
             $impresora->text("¡Gracias por preferirnos! \n");
             $impresora->text("\n");

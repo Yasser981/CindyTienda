@@ -9,7 +9,7 @@
         <br>Cédula {{$pago->cedula}}
         <br>Articulo {{$pago->articulo}}
         <br>Abona {{$divisa}} {{$pago->abona}} <br> Saldo {{$divisa}} {{$pago->saldo}}
-        <br>Firma Cliente
+        <br>Firma 
         <br>¡Gracias por preferirnos!
     </p>
 </div>
