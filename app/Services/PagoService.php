@@ -83,7 +83,7 @@ class PagoService
 
     public function impresion($save)
     {
-            $divisa = $save->opcion_divisa === 0 ? 'C$':'$';
+            $divisa = $save->opcion_divisa === 0 ? 'CS':'US$';
             
             $nombreImpresora = "ImpresoraTermica";
             $connector = new WindowsPrintConnector($nombreImpresora);
@@ -95,17 +95,17 @@ class PagoService
             $impresora->text("Dirección: Iglesia Católica 1/2 C. al norte Yalagüina\n");
             $impresora->text("Cajero: ".Auth::user()->name."\n");
             $impresora->text("\n");
-            $impresora->text("Recibo de pago #".str_pad($save->id, 4, "0", STR_PAD_LEFT)." \n");
+            $impresora->text("Recibo de pago # ".str_pad($save->id, 4, "0", STR_PAD_LEFT)." \n");
             $impresora->text("\n");
             $impresora->text("Fecha ".$save->created_at->isoFormat('Y-M-D h:mm:ss: A')."\n");
             $impresora->text("\n");
             $impresora->text("Cliente ".$save->nombre." ".$save->apellido."\n");
             $impresora->text("Cédula ".$save->cedula."\n");
             $impresora->text("\n");
-            $impresora->text("Artículo ".$save->articulo."\n");
+            $impresora->text("Artículo  ".$save->articulo."\n");
             $impresora->text("\n");
-            $impresora->text("Abono ".$divisa.$save->abona."\n \n"."Saldo ".$divisa.$save->saldo."\n");
-            $impresora->text("\n \n");
+            $impresora->text("Abono  ".$divisa.$save->abona."\n \n"."Saldo ".$divisa.$save->saldo."\n");
+            $impresora->text("\n");
             $impresora->text("_______________________________"."\n");
             $impresora->text("Firma \n");
             $impresora->text("\n \n");
