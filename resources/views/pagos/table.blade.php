@@ -33,6 +33,7 @@
             <th>Cedula</th>
             <th>Articulo</th>
             <th>Abono</th>
+            <th>Prima</th>
             <th>Saldo</th>
             <th>Fecha</th>
             <th>Accion</th>
@@ -208,6 +209,7 @@
                     { "data": "cedula" },
                     { "data": "articulo" },
                     { "data": "abona" },
+                    { "data": "prima" },
                     { "data": "saldo" },
                     { "data": "fecha" },
                     {  data: 'action', name: 'action', orderable: false, searchable: false}
@@ -320,7 +322,8 @@
                         apellido: $('#apellido').val(),
                         cedula: $('#cedula').val(),
                         articulo : $('#articulo').val(),
-                        abono : $('#abono').val(),
+                        tipo : $('#tipo').val(),
+                        pago : $('#pago').val(),
                         saldo : $('#saldo').val(),
                         dolar : dolar,
                         id:edit_id

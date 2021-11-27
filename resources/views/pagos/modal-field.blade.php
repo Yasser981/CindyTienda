@@ -8,7 +8,8 @@
         <br>Cliente {{$pago->nombre}} {{$pago->apellido}}
         <br>Cédula {{$pago->cedula}}
         <br>Articulo {{$pago->articulo}}
-        <br>Abona {{$divisa}} {{$pago->abona}} <br> Saldo {{$divisa}} {{$pago->saldo}}
+        <br>{{$tipo}}
+        <br>Saldo {{$divisa}} {{$pago->saldo}}
         <br>Firma 
         <br>¡Gracias por preferirnos!
     </p>

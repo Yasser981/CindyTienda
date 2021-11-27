@@ -38,7 +38,13 @@ class PagoService
                 })
                 ->addColumn('abona', function ($data){
                     $divisa = $data->opcion_divisa === 1 ? 'US$ ':'C$ ';
-                    return $divisa.' '.$data->abona;
+                    $pago = $data->abona != null?$data->abona: 'N/A';
+                    return $pago === 'N/A'?$pago:$divisa.' '.$pago;
+                })
+                ->addColumn('prima', function ($data){
+                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'C$ ';
+                    $pago = $data->prima != null?$data->prima:'N/A';
+                    return $pago === 'N/A'?$pago:$divisa.' '.$pago;
                 })
                 ->addColumn('saldo', function ($data){
                     $divisa = $data->opcion_divisa === 1 ? 'US$ ':'C$ ';
@@ -62,15 +68,30 @@ class PagoService
     public function store($request)
     {
         $divisa = (!empty($request->dolar))?1:0;
-        $save = Pago::create([
-            'nombre' => $request->nombre,
-            'apellido' => $request->apellido,
-            'cedula' => strtoupper($request->cedula),
-            'articulo' => $request->articulo,
-            'abona' => intval($request->abono),
-            'saldo' => intval($request->saldo),
-            'opcion_divisa' => $divisa,
-        ]);
+        
+
+        if(intval($request->tipo) === 1){
+            $save = Pago::create([
+                'nombre' => $request->nombre,
+                'apellido' => $request->apellido,
+                'cedula' => strtoupper($request->cedula),
+                'articulo' => $request->articulo,
+                'abona' => intval($request->pago),
+                'saldo' => intval($request->saldo),
+                'opcion_divisa' => $divisa,
+            ]);
+        }
+        else{
+            $save = Pago::create([
+                'nombre' => $request->nombre,
+                'apellido' => $request->apellido,
+                'cedula' => strtoupper($request->cedula),
+                'articulo' => $request->articulo,
+                'prima' => intval($request->pago),
+                'saldo' => intval($request->saldo),
+                'opcion_divisa' => $divisa,
+            ]);
+        }
 
         if ($save->save()) {
             $notify = true; 
@@ -84,7 +105,7 @@ class PagoService
     public function impresion($save)
     {
             $divisa = $save->opcion_divisa === 1 ? 'US$ ':'C$ ';
-            
+            $tipo = $save->abona != null?'Abono '.$divisa.$save->abona:'Prima '.$divisa.$save->prima;
             $nombreImpresora = "ImpresoraTermica";
             $connector = new WindowsPrintConnector($nombreImpresora);
             $impresora = new Printer($connector);
@@ -105,7 +126,7 @@ class PagoService
             $impresora->text("\n");
             $impresora->text("Artículo  ".$save->articulo."\n");
             $impresora->text("\n");
-            $impresora->text("Abono  ".$divisa.$save->abona."\n \n"."Saldo ".$divisa.$save->saldo."\n");
+            $impresora->text($tipo."\n \n"."Saldo ".$divisa.$save->saldo."\n");
             $impresora->text("\n");
             $impresora->text("_______________________________"."\n");
             $impresora->text("Firma \n");
@@ -127,14 +148,27 @@ class PagoService
     public function update($request,$id)
     {
         $pago = Pago::find(intval($id));
-        
-        $pago->nombre = $request->nombre;
-        $pago->apellido =  $request->apellido;
-        $pago->cedula = strtoupper($request->cedula);
-        $pago->articulo = $request->articulo;
-        $pago->abona =  intval($request->abono);
-        $pago->saldo = intval($request->saldo);
-        $pago->opcion_divisa = intval($request->dolar);
+        if(intval($request->tipo) === 1){
+            $pago->nombre = $request->nombre;
+            $pago->apellido =  $request->apellido;
+            $pago->cedula = strtoupper($request->cedula);
+            $pago->articulo = $request->articulo;
+            $pago->abona =  intval($request->pago);
+            $pago->prima = null;
+            $pago->saldo = intval($request->saldo);
+            $pago->opcion_divisa = intval($request->dolar);        
+        }
+        else{
+            $pago->nombre = $request->nombre;
+            $pago->apellido =  $request->apellido;
+            $pago->cedula = strtoupper($request->cedula);
+            $pago->articulo = $request->articulo;
+            $pago->prima =  intval($request->pago);
+            $pago->abona =  null;
+            $pago->saldo = intval($request->saldo);
+            $pago->opcion_divisa = intval($request->dolar);
+        }
+
       
         if ($pago->save()){
             return response()->json(['success'=>'Se actualizo el recivo']);

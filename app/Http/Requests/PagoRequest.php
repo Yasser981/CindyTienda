@@ -39,7 +39,8 @@ class PagoRequest extends BaseRequest
             'articulo' => 'required|string|',
             'abono' => 'nullable|numeric',
             'tipo' => 'required',
-            'pago' => 'required|numeric'
+            'pago' => 'required|numeric',
+            'saldo' => 'required|numeric'
         ];
     }
     public function update()
@@ -51,7 +52,8 @@ class PagoRequest extends BaseRequest
             'articulo' => 'required|string|',
             'abono' => 'nullable|numeric',
             'tipo' => 'required',
-            'pago' => 'required|numeric'
+            'pago' => 'required|numeric',
+            'saldo' => 'required|numeric'
         ];
     }
 
