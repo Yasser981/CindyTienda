@@ -37,11 +37,11 @@ class PagoService
                     return $data->articulo;
                 })
                 ->addColumn('abona', function ($data){
-                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'CS ';
+                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'C$ ';
                     return $divisa.' '.$data->abona;
                 })
                 ->addColumn('saldo', function ($data){
-                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'CS ';
+                    $divisa = $data->opcion_divisa === 1 ? 'US$ ':'C$ ';
                     return $divisa.' '.$data->saldo;
                 })
                 ->addColumn('fecha',function ($data){
@@ -83,7 +83,7 @@ class PagoService
 
     public function impresion($save)
     {
-            $divisa = $save->opcion_divisa === 1 ? 'US$ ':'CS ';
+            $divisa = $save->opcion_divisa === 1 ? 'US$ ':'C$ ';
             
             $nombreImpresora = "ImpresoraTermica";
             $connector = new WindowsPrintConnector($nombreImpresora);
@@ -91,11 +91,12 @@ class PagoService
             $impresora->setJustification(Printer::JUSTIFY_CENTER);
             $impresora->setTextSize(1, 1);
             $impresora->text("Variedades Cindy\n");
+            $impresora->text("RUC 3211105930004N \n");
             $impresora->text("Teléfono 27222871\n");
             $impresora->text("Dirección: Iglesia Católica 1/2 C. al norte Yalagüina\n");
-            $impresora->text("Cajero: ".Auth::user()->name."\n");
+            $impresora->text("Cajero: ". Auth::user()->name."\n");
             $impresora->text("\n");
-            $impresora->text("Recibo de pago # ".str_pad($save->id, 4, "0", STR_PAD_LEFT)." \n");
+            $impresora->text("Recibo de pago #".str_pad($save->id, 4, "0", STR_PAD_LEFT)." \n");
             $impresora->text("\n");
             $impresora->text("Fecha ".$save->created_at->isoFormat('Y-M-D h:mm:ss: A')."\n");
             $impresora->text("\n");

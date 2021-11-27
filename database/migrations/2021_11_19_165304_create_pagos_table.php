@@ -19,7 +19,7 @@ class CreatePagosTable extends Migration
             $table->string('apellido');
             $table->string('cedula');
             $table->string('articulo');
-            $table->decimal('abona', 8, 2);
+            $table->decimal('abona', 8, 2)->nullable();
             $table->decimal('saldo', 8, 2);
             $table->Integer('opcion_divisa')->default(0);
             //$table->integer('abona');

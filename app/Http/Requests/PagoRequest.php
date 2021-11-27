@@ -37,8 +37,9 @@ class PagoRequest extends BaseRequest
             'apellido' => 'required|string|',
             'cedula' => 'required|string|max:14',
             'articulo' => 'required|string|',
-            'abono' => 'required|numeric',
-            'saldo' => 'required|numeric',
+            'abono' => 'nullable|numeric',
+            'tipo' => 'required',
+            'pago' => 'required|numeric'
         ];
     }
     public function update()
@@ -48,8 +49,9 @@ class PagoRequest extends BaseRequest
             'apellido' => 'required|string|',
             'cedula' => 'required|string|max:14',
             'articulo' => 'required|string|',
-            'abono' => 'required|numeric',
-            'saldo' => 'required|numeric',
+            'abono' => 'nullable|numeric',
+            'tipo' => 'required',
+            'pago' => 'required|numeric'
         ];
     }
 
@@ -61,7 +63,8 @@ class PagoRequest extends BaseRequest
             'cedula.required' => 'Agrege una cedula',
             'cedula.max' => 'EL maximo es de 14 dijistos',
             'articulo.required' => 'Agrege un articulo',
-            'abono.required' => 'Agrege un abono',
+            'tipo.required' => 'Agrege un tipo de recibo',
+            'pago.required' => 'Agrege un pago',
             'saldo.required' => 'Agrege un saldo',
         ];
     }

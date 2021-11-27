@@ -32,7 +32,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="cedula" class="col-sm-3 control-label bold uppercase"><strong>Cedula:</strong> </label>
@@ -56,19 +55,34 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipo" class="col-sm-3 control-label bold uppercase"><strong>Tipo</strong> </label>
+                                
+                                    <select id="tipo" type="" class="form-control" name="tipo">
+                                        <option value="" disabled selected>Porfavor seleccione un tipo de pago</option>
+                                        <option value="1">Abono </option>
+                                        <option value="0">Prima </option>
+                                    </select>
+                                    @if ($errors->has('tipo'))
+                                        <span class="invalid-feedback d-block">
+                                            <strong>{{ $errors->first('tipo') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="abono" class="col-sm-3 control-label bold uppercase"><strong>Abono :</strong> </label>
-                                <input type="number" class="form-control has-error bold " id="abono" name="abono" placeholder="Abono" value="{{ old('abono') }}" step=".01">
-                                @if ($errors->has('abono'))
+                                <label for="Pago" class="col-sm-3 control-label bold uppercase"><strong>Pago :</strong> </label>
+                                <input type="number" class="form-control has-error bold " id="pago" name="pago" placeholder="Pago" value="{{ old('pago')}} " step=".01">
+                                @if ($errors->has('pago'))
                                 <span class="invalid-feedback d-block">
-                                    <strong>{{ $errors->first('abono') }}</strong>
+                                    <strong>{{ $errors->first('pago') }}</strong>
                                 </span>
                                 @endif
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="saldo" class="col-sm-3 control-label bold uppercase"><strong>Saldo :</strong> </label>
