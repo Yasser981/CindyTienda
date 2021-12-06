@@ -41,3 +41,6 @@ Route::middleware('auth')->group(function () {
     
     Route::post('impresion',ImprecionPagoController::class)->name('imprecion.pagos');
 });
+///Auth::routes();
+
+///Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
