@@ -1,11 +1,11 @@
-@extends('dashboard.master')
+@extends('adminlte::page')
 
-@section('main')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Bienbenidos</div>
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Variedades Cyndi
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
