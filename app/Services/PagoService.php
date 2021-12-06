@@ -111,6 +111,8 @@ class PagoService
             $impresora = new Printer($connector);
             $impresora->setJustification(Printer::JUSTIFY_CENTER);
             $impresora->setTextSize(1, 1);
+            $img = EscposImage::load('images/logo/VariedadesCindyLogo-cutout.png', false);
+            $impresora->graphics($img);
             $impresora->text("Variedades Cindy\n");
             $impresora->text("RUC 3211105930004N \n");
             $impresora->text("Teléfono 27222871\n");
