@@ -1,6 +1,12 @@
-@extends('dashboard.master')
+@extends('adminlte::page')
 
-@section('main')
+@section('title', 'Usuarios')
+
+@section('content_header')
+    <h1>Usuarios del sistema</h1>
+@endsection
+
+@section('content')
     <!-- Main content -->
     <div class="container">
 

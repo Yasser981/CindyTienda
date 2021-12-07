@@ -1,6 +1,6 @@
-@extends('dashboard.master')
+@extends('adminlte::page')
 
-@section('main')
+@section('content')
     <!-- Main content -->
     <div class="container">
 
